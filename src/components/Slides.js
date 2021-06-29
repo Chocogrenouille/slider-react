@@ -26,7 +26,13 @@ export default function Slides() {
         } else {
             setActiveSlide(2)
         }    
+        let sliderAnimation = document.getElementById("animate-slide");
+        sliderAnimation.classList.remove("sliding");
+        void sliderAnimation.offsetWidth;
+        sliderAnimation.classList.add("sliding");
     }
+
+
 
     const nextSlide = () => {
         if (activeSlide < 2) {
@@ -35,6 +41,11 @@ export default function Slides() {
         if (activeSlide >= 2) {
             setActiveSlide(0);
         }
+
+        let sliderAnimation = document.getElementById("animate-slide");
+        sliderAnimation.classList.remove("sliding");
+        void sliderAnimation.offsetWidth;
+        sliderAnimation.classList.add("sliding");
     }
 
     const goTSlides = () => {
@@ -44,13 +55,12 @@ export default function Slides() {
 
     return (
         <div>
-            <div className="slide">
-                <p className="img-text">{sliderInfo[activeSlide].text}</p>
-                <IoIosArrowBack className="back-arrow" onClick={previousSlide}/>
-                    <img src={sliderInfo[activeSlide].url} alt="slider"/>                     
-                <IoIosArrowForward className="forward-arrow" onClick={nextSlide}/>
+            <IoIosArrowBack className="back-arrow" onClick={previousSlide}/>
+            <div className="slide" id="animate-slide">
+                <p className="img-text" id="img-text">{sliderInfo[activeSlide].text}</p>
+                    <img id="slider-img" src={sliderInfo[activeSlide].url} alt="slider"/>                     
                 {activeSlide === 2 && 
-                    <div className="house-info">  
+                    <div className="house-info" id="slider-house">  
                         <h3>{randomHouse.name}</h3>
                         <h4>{randomHouse.region}</h4>
                         <p>{randomHouse.coatOfArms}</p>
@@ -58,6 +68,7 @@ export default function Slides() {
                     </div>
                 }
             </div>
+            <IoIosArrowForward className="forward-arrow" onClick={nextSlide}/>
         </div>
     )
 }
