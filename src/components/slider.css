@@ -99,3 +99,9 @@ img {
     width: 200px;
 }
 
+
+.house-info > button:hover {
+   cursor: pointer;
+}
+
+
